@@ -1,0 +1,22 @@
+# Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Temporary & Scratch files
+scratch/
+.gemini/
+*.tmp
+*.log
+
+# Zip backups
+*.zip
+
+# Database (optional to exclude if you don't want it on GitHub, 
+# but user requested it in the "necessary files" context earlier. 
+# I'll include it for now as per previous logic, unless it's too big.)
+# database_production.sql 
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,119 @@
+[16-Apr-2026 02:34:26 Asia/Jakarta] PHP Warning:  mysqli::__construct(): (HY000/1044): Access denied for user 'papy7652_papwensmyid'@'localhost' to database 'papy7652_papwens.my.id' in /home/papy7652/public_html/api/config.php on line 19
+[16-Apr-2026 02:34:26 Asia/Jakarta] PHP Warning:  mysqli::__construct(): (HY000/1044): Access denied for user 'papy7652_papwensmyid'@'localhost' to database 'papy7652_papwens.my.id' in /home/papy7652/public_html/api/config.php on line 19
+[16-Apr-2026 02:34:26 Asia/Jakarta] PHP Warning:  mysqli::__construct(): (HY000/1044): Access denied for user 'papy7652_papwensmyid'@'localhost' to database 'papy7652_papwens.my.id' in /home/papy7652/public_html/api/config.php on line 19
+[16-Apr-2026 02:34:26 Asia/Jakarta] PHP Warning:  mysqli::__construct(): (HY000/1044): Access denied for user 'papy7652_papwensmyid'@'localhost' to database 'papy7652_papwens.my.id' in /home/papy7652/public_html/api/config.php on line 19
+[16-Apr-2026 02:35:22 Asia/Jakarta] PHP Warning:  mysqli::__construct(): (HY000/1044): Access denied for user 'papy7652_papwensmyid'@'localhost' to database 'papy7652_papwens.my.id' in /home/papy7652/public_html/api/config.php on line 19
+[16-Apr-2026 02:35:22 Asia/Jakarta] PHP Warning:  mysqli::__construct(): (HY000/1044): Access denied for user 'papy7652_papwensmyid'@'localhost' to database 'papy7652_papwens.my.id' in /home/papy7652/public_html/api/config.php on line 19
+[16-Apr-2026 02:35:26 Asia/Jakarta] PHP Warning:  mysqli::__construct(): (HY000/1044): Access denied for user 'papy7652_papwensmyid'@'localhost' to database 'papy7652_papwens.my.id' in /home/papy7652/public_html/api/config.php on line 19
+[16-Apr-2026 02:35:26 Asia/Jakarta] PHP Warning:  mysqli::__construct(): (HY000/1044): Access denied for user 'papy7652_papwensmyid'@'localhost' to database 'papy7652_papwens.my.id' in /home/papy7652/public_html/api/config.php on line 19
+[16-Apr-2026 02:38:27 Asia/Jakarta] PHP Warning:  mysqli::__construct(): (HY000/1044): Access denied for user 'papy7652_papwensmyid'@'localhost' to database 'papy7652_papwens.my.id' in /home/papy7652/public_html/api/config.php on line 19
+[16-Apr-2026 02:41:39 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:41:40 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:41:40 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:42:00 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:42:04 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:42:10 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:42:51 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:42:53 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:43:00 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:43:04 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:43:09 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:43:10 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:43:10 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:43:15 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:43:15 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:43:15 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:43:22 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:43:22 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:43:22 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:45:46 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:45:48 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
+[16-Apr-2026 02:45:54 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in /home/papy7652/public_html/api/settings.php:8
+Stack trace:
+#0 /home/papy7652/public_html/api/index.php(36): require()
+#1 {main}
+  thrown in /home/papy7652/public_html/api/settings.php on line 8
