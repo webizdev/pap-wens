@@ -354,6 +354,14 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
               else img.alt = 'Freshly Baked ' + config.siteName + ' Product';
            }
         });
+
+        // 11. Branding Update: "2021 Established" -> "25+ experience"
+        document.querySelectorAll('div, span, p, h1, h2, h3').forEach(el => {
+           if (el.children.length === 0) {
+              if (el.textContent.trim() === '2021') el.textContent = '25+';
+              if (el.textContent.trim().toUpperCase() === 'ESTABLISHED') el.textContent = 'EXPERIENCE';
+           }
+        });
       }
 
       // HIGH PERFORMANCE DEBOUNCED OBSERVER
