@@ -20,3 +20,7 @@ scratch/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Live server files
+uploads/
+*.json
