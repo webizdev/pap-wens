@@ -487,8 +487,8 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
              .find(el => {
                 const txt = el.textContent.trim().toLowerCase();
                 const siteName = (config.siteName || '').toLowerCase();
-                // Ensure we only match leaf nodes or specific logo containers to avoid wiping the whole footer
-                return el.children.length <= 1 && (txt === siteName || txt === 'papwens' || (txt.includes('©') && txt.length < 50) || el.querySelector('img[alt*="logo"]'));
+                // Ensure we only match the main logo area, NOT the copyright text
+                return el.children.length <= 1 && (txt === siteName || txt === 'papwens' || el.querySelector('img[alt*="logo"]'));
              });
 
           if (brandArea && !brandArea.dataset.hydrated) {
@@ -583,8 +583,8 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
       });
     </script>
 
-    <script type="module" crossorigin src="/assets/index-DU-yLjgB.js?v=BUILD_2026_04_18_V3" defer></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-fjww86zz.css?v=BUILD_2026_04_18_V3">
+    <script type="module" crossorigin src="/assets/index-DU-yLjgB.js?v=BUILD_2026_04_18_V4" defer></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-fjww86zz.css?v=BUILD_2026_04_18_V4">
     <style>
       #hero-skeleton { aspect-ratio: 16/9; }
       @media (max-width: 768px) { #hero-skeleton { aspect-ratio: 9/16; } }
