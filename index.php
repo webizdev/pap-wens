@@ -575,7 +575,9 @@ $buildVer = "BUILD_2026_04_18_V12";
             const section = document.getElementById(sectionId);
             if (!section || section.querySelector('.custom-pill-container')) return;
 
-            const originalContainer = section.querySelector('[class*="scrollbar-hide"][class*="snap-x"]');
+            const originalContainer = Array.from(section.querySelectorAll('div')).find(div => 
+               Array.from(div.querySelectorAll('button')).some(btn => btn.textContent.trim().toLowerCase() === 'all')
+            );
             if (!originalContainer) return;
 
             const container = document.createElement('div');
