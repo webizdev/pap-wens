@@ -96,7 +96,7 @@ $whatsapp = preg_replace('/[^0-9]/', '', $whatsappFull);
 $theme = !empty($webData['theme']) ? $webData['theme'] : 'yellow-black';
 
 // Helper for SEO Title
-$seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & Specialty Coffee');
+$seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & Specialty COFFEE');
 ?>
 <!doctype html>
 <html lang="en">
@@ -121,7 +121,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
     <title><?php echo htmlspecialchars($seoTitle); ?></title>
     
     <?php
-      $metaDesc = !empty($webData['metaDescription']) ? $webData['metaDescription'] : "Artisan Bakery & Specialty Coffee di Bandung. Nikmati Freshly Baked Bread, Pastry, dan Kopi Pilihan setiap hari di Papwens.";
+      $metaDesc = !empty($webData['metaDescription']) ? $webData['metaDescription'] : "Artisan BAKERY & Specialty COFFEE di Bandung. Nikmati Freshly Baked Bread, PASTRY, dan Kopi Pilihan setiap hari di Papwens.";
       $metaKeys = !empty($webData['metaKeywords']) ? $webData['metaKeywords'] : "bakery bandung, cafe bandung, artisan bakery, specialty coffee, papwens bandung, pastry bandung";
       $currentUrl = "https://papwens.com" . $_SERVER['REQUEST_URI'];
       $ogImageStatic = "/assets/og.png"; // User specified OG image
@@ -190,7 +190,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": ["Bakery", "Cafe", "FoodEstablishment"],
+      "@type": ["BAKERY", "Cafe", "FoodEstablishment"],
       "name": "<?php echo addslashes($siteName); ?>",
       "image": "<?php echo htmlspecialchars($ogImage); ?>",
       "@id": "https://papwens.com",
@@ -265,12 +265,12 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
       window.PAPWENS_GALLERY_DATA = window.PAPWENS_DB_CACHE["/api/gallery"];
 
       // 14. Sync Logic for Categories (Menu & Gallery)
-      function syncAllCategories() {
+      function syncALLCategories() {
          const isHome = window.location.pathname === '/' || window.location.pathname === '' || window.location.pathname.includes('index.php');
          if (!isHome) return;
 
          // Sync Gallery Items (Images)
-         document.querySelectorAll('img[alt], div[style*="background-image"]').forEach(el => {
+         document.querySelectorALL('img[alt], div[style*="background-image"]').forEach(el => {
             if (el.dataset.categorySynced) return;
             
             // For Gallery, items usually have a title or alt text
@@ -294,20 +294,20 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
         const settings = config.settings || {};
         const contact = config.contact || {};
 
-        // 13. Gallery Page Category Pill Injection ("Bakery")
+        // 13. Gallery Page Category Pill Injection ("BAKERY")
         const isGalleryHome = window.location.pathname === '/' || window.location.pathname === '' || window.location.pathname.includes('index.php');
         if (isGalleryHome) {
-           const potentialAmbiance = Array.from(document.querySelectorAll('button, div, span')).find(el => {
+           const potentialAmbiance = Array.from(document.querySelectorALL('button, div, span')).find(el => {
               return el.children.length === 0 && el.innerText.trim() === 'Ambiance';
            });
 
            if (potentialAmbiance) {
               const container = potentialAmbiance.parentElement;
-              const allPill = Array.from(container.children).find(child => child.innerText.trim() === 'All');
+              const allPill = Array.from(container.children).find(child => child.innerText.trim() === 'ALL');
               
               if (allPill && !container.querySelector('[data-bakery-pill]')) {
                  const bakeryPill = potentialAmbiance.cloneNode(true);
-                 bakeryPill.innerText = 'Bakery';
+                 bakeryPill.innerText = 'BAKERY';
                  bakeryPill.dataset.bakeryPill = "true";
                  bakeryPill.style.cursor = 'pointer';
                  bakeryPill.classList.remove('bg-espresso', 'text-white', 'active');
@@ -318,7 +318,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
                     allPill.click();
                     
                     const applyFilter = () => {
-                        document.querySelectorAll('[data-gallery-tag]').forEach(item => {
+                        document.querySelectorALL('[data-gallery-tag]').forEach(item => {
                            const cat = (item.dataset.category || '').toLowerCase();
                            if (cat === 'bakery') {
                               item.style.display = 'block';
@@ -345,7 +345,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
                     if (p !== bakeryPill) {
                        p.addEventListener('click', () => {
                           bakeryPill.classList.remove('bg-espresso', 'text-white', 'active');
-                          document.querySelectorAll('[data-gallery-tag]').forEach(item => {
+                          document.querySelectorALL('[data-gallery-tag]').forEach(item => {
                              item.style.display = '';
                              item.style.opacity = '';
                           });
@@ -362,14 +362,14 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
         const toWebp = (url) => url ? url.replace(/\.(png|jpg|jpeg)$/i, '.webp') : '';
 
         // 0. Global Perf: Lazy Load Images (except Hero)
-        document.querySelectorAll('img:not([loading])').forEach(img => {
+        document.querySelectorALL('img:not([loading])').forEach(img => {
            if (!img.src.includes('hero') && !img.className.includes('logo')) {
               img.setAttribute('loading', 'lazy');
            }
         });
 
         // 1. WhatsApp Links
-        document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp.com"]').forEach(a => {
+        document.querySelectorALL('a[href*="wa.me"], a[href*="whatsapp.com"]').forEach(a => {
            if (config.whatsapp && !a.dataset.hydrated) {
               const cleanWa = config.whatsapp.replace(/[^0-9]/g, '');
               a.href = "https://wa.me/" + cleanWa;
@@ -380,7 +380,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
         // 2. Logo Replacement (Site-wide)
         if (config.logo) {
           const optLogo = toWebp(config.logo);
-          document.querySelectorAll('nav img, footer img, .logo img, [class*="footer"] img, img[alt*="logo"], img[alt*="Papwens"]').forEach(img => {
+          document.querySelectorALL('nav img, footer img, .logo img, [class*="footer"] img, img[alt*="logo"], img[alt*="Papwens"]').forEach(img => {
              if (!img.dataset.hydrated) {
                 img.src = optLogo;
                 img.dataset.hydrated = "true";
@@ -390,15 +390,15 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
 
         // 3. Navigation & Title Highlights
         if (config.siteName) {
-           document.querySelectorAll('.site-name, .brand-name').forEach(el => {
+           document.querySelectorALL('.site-name, .brand-name').forEach(el => {
              if (el.textContent !== config.siteName) el.textContent = config.siteName;
            });
         }
 
         // 4. Hero Section Sync
         if (settings.heroTitleMain) {
-           document.querySelectorAll('h1').forEach(h1 => {
-              if (h1.id === 'hero-title' || (h1.textContent.includes('Bakery') && !h1.dataset.hydrated)) {
+           document.querySelectorALL('h1').forEach(h1 => {
+              if (h1.id === 'hero-title' || (h1.textContent.includes('BAKERY') && !h1.dataset.hydrated)) {
                  h1.textContent = settings.heroTitleMain;
                  h1.dataset.hydrated = "true";
               }
@@ -410,7 +410,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
            try {
               const social = JSON.parse(contact.social_media);
               social.forEach(item => {
-                 document.querySelectorAll(`a[href*="${item.platform.toLowerCase()}"]`).forEach(a => {
+                 document.querySelectorALL(`a[href*="${item.platform.toLowerCase()}"]`).forEach(a => {
                     if (a.href !== item.url) a.href = item.url;
                  });
               });
@@ -420,7 +420,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
         // 7. Dynamic Images (Hero, About, etc)
         if (settings.heroImage) {
            const optHero = toWebp(settings.heroImage);
-           document.querySelectorAll('.hero-bg, .hero-image, #hero-skeleton').forEach(el => {
+           document.querySelectorALL('.hero-bg, .hero-image, #hero-skeleton').forEach(el => {
               if (el.dataset.hydrated_img) return;
               if (el.tagName === 'IMG') el.src = optHero;
               else el.style.backgroundImage = `url("${optHero}")`;
@@ -429,7 +429,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
         }
         if (settings.aboutImage) {
            const optAbout = toWebp(settings.aboutImage);
-           document.querySelectorAll('.about-image, img[alt*="About"]').forEach(img => {
+           document.querySelectorALL('.about-image, img[alt*="About"]').forEach(img => {
               if (!img.dataset.hydrated_img) {
                 img.src = optAbout;
                 img.dataset.hydrated_img = "true";
@@ -438,7 +438,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
         }
 
         // 8. Map Sanitizer & Badge Shield (Preventing Mobile Gap)
-        document.querySelectorAll('iframe[src*="google.com/maps"]').forEach(iframe => {
+        document.querySelectorALL('iframe[src*="google.com/maps"]').forEach(iframe => {
            if (!iframe.dataset.sanitized) {
               iframe.style.width = '100%';
               iframe.style.maxWidth = '100vw';
@@ -448,7 +448,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
         });
 
         // Badge Shield: Ensure rotating elements don't overflow
-        document.querySelectorAll('[class*="natural"], [class*="badge"], [class*="animate"]').forEach(el => {
+        document.querySelectorALL('[class*="natural"], [class*="badge"], [class*="animate"]').forEach(el => {
            if (el.offsetWidth > window.innerWidth) {
               el.style.maxWidth = '100vw';
               el.style.overflow = 'hidden';
@@ -459,7 +459,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
         if (window.location.pathname.includes('/admin')) {
           const webSettingsForm = document.querySelector('form') || document.querySelector('#root');
           if (webSettingsForm && (document.body.innerText.includes('Web Settings') || document.body.innerText.includes('Identitas'))) {
-             const logoSection = Array.from(document.querySelectorAll('label')).find(l => l.innerText.includes('Logo'));
+             const logoSection = Array.from(document.querySelectorALL('label')).find(l => l.innerText.includes('Logo'));
              if (logoSection && !document.getElementById('papwens-del-logo-btn')) {
                 const btn = document.createElement('button');
                 btn.id = 'papwens-del-logo-btn';
@@ -490,7 +490,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
         const footer = document.querySelector('footer') || document.querySelector('[class*="footer"]');
         if (footer) {
           const siteNameDisplay = config.siteName || 'PAPWENS';
-          const brandArea = Array.from(footer.querySelectorAll('h1, h2, h3, h4, h5, div, span, a, p'))
+          const brandArea = Array.from(footer.querySelectorALL('h1, h2, h3, h4, h5, div, span, a, p'))
              .find(el => {
                 const txt = el.textContent.trim().toLowerCase();
                 const siteName = (config.siteName || '').toLowerCase();
@@ -518,13 +518,13 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
         }
 
         // 10. Image SEO (ALT tags)
-        document.querySelectorAll('img').forEach(img => {
+        document.querySelectorALL('img').forEach(img => {
            const src = img.src.toLowerCase();
            if (!img.alt || img.alt === '' || img.alt.includes('dummy') || img.alt.includes('Placeholder')) {
               if (src.includes('logo')) img.alt = config.siteName + ' Logo';
               else if (img.closest('nav')) img.alt = config.siteName + ' Navigation Icon';
               else if (img.closest('footer')) img.alt = config.siteName + ' Footer Branding';
-              else if (src.includes('hero')) img.alt = 'Artisan Bakery & Specialty Coffee at ' + config.siteName;
+              else if (src.includes('hero')) img.alt = 'Artisan BAKERY & Specialty COFFEE at ' + config.siteName;
               else if (src.includes('about')) img.alt = 'Our Story - ' + config.siteName;
               else img.alt = 'Freshly Baked ' + config.siteName + ' Product';
            }
@@ -544,7 +544,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
 
         // 12. Dynamic Admin Categories Sync (MySQL Source)
         if (window.location.pathname.includes('/admin')) {
-           const catSelect = Array.from(document.querySelectorAll('select')).find(el => {
+           const catSelect = Array.from(document.querySelectorALL('select')).find(el => {
               const label = el.closest('div')?.querySelector('label');
               return label && label.innerText.toLowerCase().includes('kategori');
            });
@@ -556,7 +556,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
                  .then(r => r.json())
                  .then(items => {
                     const dbCats = [...new Set(items.map(i => i.category))].filter(Boolean);
-                    const defaults = ['Sourdough', 'Pastry', 'Coffee', 'Atmosphere'];
+                    const defaults = ['SOURDOUGH', 'PASTRY', 'COFFEE', 'Atmosphere'];
                     const allCats = [...new Set([...defaults, ...dbCats])].sort();
                     
                     catSelect.innerHTML = '';
@@ -580,7 +580,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
         if (hydrationTimeout) clearTimeout(hydrationTimeout);
         hydrationTimeout = setTimeout(() => {
            hydrateDynamicData();
-           syncAllCategories();
+           syncALLCategories();
         }, 100);
       });
 
@@ -591,7 +591,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
         const cat = btn.getAttribute('data-cat');
         
         // Sync Visual State
-        document.querySelectorAll('[data-cat]').forEach(b => {
+        document.querySelectorALL('[data-cat]').forEach(b => {
           if (b.getAttribute('data-cat') === cat) {
             b.classList.add('custom-p-active', 'bg-espresso', 'text-white', 'shadow-custom-md');
             b.classList.remove('custom-p-inactive', 'text-text-secondary');
@@ -606,12 +606,12 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
         categorySections.forEach(sid => {
            const section = document.getElementById(sid);
            if (section) {
-              const originalContainer = Array.from(section.querySelectorAll('div')).find(div => 
-                Array.from(div.querySelectorAll('button')).some(b => b.textContent.trim().toLowerCase() === 'all' && !b.hasAttribute('data-cat'))
+              const originalContainer = Array.from(section.querySelectorALL('div')).find(div => 
+                Array.from(div.querySelectorALL('button')).some(b => b.textContent.trim().toLowerCase() === 'all' && !b.hasAttribute('data-cat'))
               );
               if (originalContainer) {
                  originalContainer.style.display = 'none';
-                 const origMatch = Array.from(originalContainer.querySelectorAll('button')).find(ob => ob.textContent.trim().toLowerCase() === cat.toLowerCase());
+                 const origMatch = Array.from(originalContainer.querySelectorALL('button')).find(ob => ob.textContent.trim().toLowerCase() === cat.toLowerCase());
                  if (origMatch) origMatch.click();
               }
            }
@@ -624,8 +624,8 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
       });
     </script>
 
-    <script type="module" crossorigin src="/assets/index-DU-yLjgB.js?v=BUILD_2026_04_18_V16" defer></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-fjww86zz.css?v=BUILD_2026_04_18_V16">
+    <script type="module" crossorigin src="/assets/index-DU-yLjgB.js?v=BUILD_2026_04_18_V17" defer></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-fjww86zz.css?v=BUILD_2026_04_18_V17">
     <style>
       #hero-skeleton { aspect-ratio: 16/9; }
       @media (max-width: 768px) { #hero-skeleton { aspect-ratio: 9/16; } }
@@ -644,30 +644,30 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
             <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 30px;">Our Menu</h2>
             
             <div class="custom-filter-bar -webkit-scrollbar scrollbar-hide flex space-x-2 p-1 bg-warm-white rounded-full snap-x snap-mandatory mb-8 mx-auto w-max max-w-full overflow-x-auto">
-              <button data-cat="All" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-active bg-espresso text-white shadow-custom-md">All</button>
-              <button data-cat="Bakery" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">Bakery</button>
-              <button data-cat="Coffee" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">Coffee</button>
-              <button data-cat="Non-Coffee" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">Non-Coffee</button>
-              <button data-cat="Pastry" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">Pastry</button>
-              <button data-cat="Sourdough" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">Sourdough</button>
+              <button data-cat="ALL" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-active bg-espresso text-white shadow-custom-md">ALL</button>
+              <button data-cat="BAKERY" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">BAKERY</button>
+              <button data-cat="COFFEE" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">COFFEE</button>
+              <button data-cat="Non-COFFEE" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">Non-COFFEE</button>
+              <button data-cat="PASTRY" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">PASTRY</button>
+              <button data-cat="SOURDOUGH" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">SOURDOUGH</button>
             </div>
           </section>
           <section id="gallery-skeleton" style="padding: 60px 20px; text-align: center;">
             <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 30px;">Gallery</h2>
             
             <div class="custom-filter-bar -webkit-scrollbar scrollbar-hide flex space-x-2 p-1 bg-warm-white rounded-full snap-x snap-mandatory mb-8 mx-auto w-max max-w-full overflow-x-auto">
-              <button data-cat="All" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-active bg-espresso text-white shadow-custom-md">All</button>
-              <button data-cat="Bakery" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">Bakery</button>
-              <button data-cat="Coffee" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">Coffee</button>
-              <button data-cat="Non-Coffee" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">Non-Coffee</button>
-              <button data-cat="Pastry" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">Pastry</button>
-              <button data-cat="Sourdough" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">Sourdough</button>
+              <button data-cat="ALL" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-active bg-espresso text-white shadow-custom-md">ALL</button>
+              <button data-cat="BAKERY" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">BAKERY</button>
+              <button data-cat="COFFEE" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">COFFEE</button>
+              <button data-cat="Non-COFFEE" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">Non-COFFEE</button>
+              <button data-cat="PASTRY" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">PASTRY</button>
+              <button data-cat="SOURDOUGH" class="custom-p px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center custom-p-inactive text-text-secondary hover:text-espresso">SOURDOUGH</button>
             </div>
           </section>
           <section id="hero-skeleton" style="height: 100vh; display: flex; align-items: center; justify-content: center; background: #111 url('<?php echo htmlspecialchars($heroImageOptimized); ?>') center/cover no-repeat; color: white; text-align: center; padding: 20px; position: relative;">
              <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: 1;"></div>
              <div style="position: relative; z-index: 2;">
-                <h1 id="hero-title" style="font-family: 'Playfair Display', serif; font-size: 48px; margin-bottom: 15px; text-shadow: 0 2px 10px rgba(0,0,0,0.5);"><?php echo htmlspecialchars($webData['heroTitleMain'] ?? 'Artisan Bakery & Specialty Coffee'); ?></h1>
+                <h1 id="hero-title" style="font-family: 'Playfair Display', serif; font-size: 48px; margin-bottom: 15px; text-shadow: 0 2px 10px rgba(0,0,0,0.5);"><?php echo htmlspecialchars($webData['heroTitleMain'] ?? 'Artisan BAKERY & Specialty COFFEE'); ?></h1>
                 <p style="font-family: 'Inter', sans-serif; font-size: 18px; max-width: 600px; margin: 0 auto; opacity: 0.9; text-shadow: 0 1px 5px rgba(0,0,0,0.5);"><?php echo htmlspecialchars($webData['heroTitleSub'] ?? 'Nikmati kesegaran roti dan kopi terbaik di Bandung setiap hari.'); ?></p>
              </div>
           </section>
