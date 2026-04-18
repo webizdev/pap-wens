@@ -376,18 +376,33 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
                 btn.style = 'margin-left:10px; padding:4px 8px; background:#ff4444; color:white; border:none; border-radius:4px; cursor:pointer; font-size:12px;';
                 btn.onclick = async () => {
                    if (!confirm('Hapus logo website?')) return;
-                   const newSettings = {...config.settings, siteLogo: ""};
                    try {
+                     // 1. Fetch latest settings FIRST so we don't overwrite with stale data
+                     const currentResp = await fetch('/api/settings/web');
+                     const currentSettings = await currentResp.json();
+                     
+                     // 2. Clear logo
+                     const newSettings = {...currentSettings, siteLogo: ""};
+                     delete newSettings.dynamic_contact; // Remove injected field before saving
+                     
+                     // 3. Save back
                      const resp = await fetch('/api/settings/web', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(newSettings)
                      });
+                     
                      if (resp.ok) {
-                        alert('Logo berhasil dihapus! Halaman akan dimuat ulang.');
+                        alert('Logo berhasil dihapus! Halaman akan dimuat ulang untuk sinkronisasi.');
                         window.location.reload();
+                     } else {
+                        const err = await resp.json();
+                        alert('Gagal menghapus logo: ' + (err.error || 'Terjadi kesalahan pada server.'));
                      }
-                   } catch(e) { alert('Gagal menghapus logo: ' + e); }
+                   } catch(e) { 
+                      console.error('Papwens Delete Logo Error:', e);
+                      alert('Gagal menghapus logo: Koneksi bermasalah atau API tidak merespon.'); 
+                   }
                 };
                 logoSection.appendChild(btn);
              }
@@ -479,6 +494,21 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
            }
         }
 
+
+         // 13. Permanent Removal of Category Pills (Deleting from DOM)
+         document.querySelectorAll('#menu [class*="scrollbar-hide"][class*="snap-x"], #gallery [class*="scrollbar-hide"][class*="snap-x"]').forEach(el => {
+            el.remove();
+         });
+
+         // 14. Permanent Removal of Admin Welcome Text (Deleting from DOM)
+         if (window.location.pathname.includes('/admin')) {
+            document.querySelectorAll('h1, h2, p').forEach(el => {
+               const txt = el.textContent.toLowerCase();
+               if (txt.includes('selamat datang') || txt.includes('ringkasan data website')) {
+                  el.remove();
+               }
+            });
+         }
       }
 
       // HIGH PERFORMANCE DEBOUNCED OBSERVER
