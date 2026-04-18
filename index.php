@@ -4,7 +4,7 @@ $db = getDB();
 
 // 0. Simple File Cache for DB results
 $cacheFile = __DIR__ . '/uploads/settings_cache.json';
-$cacheTime = 300; // 5 minutes
+$cacheTime = 30; // 30 seconds
 $webData = []; $contact = []; $menuData = []; $galleryData = []; $testimonialsData = [];
 
 if (file_exists($cacheFile) && (time() - filemtime($cacheFile) < $cacheTime)) {
@@ -244,7 +244,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
         "dayOfWeek": [
           "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
         ],
-        "opens": "08:00",
+        "opens": "07:00",
         "closes": "21:00"
       },
       "sameAs": [
@@ -557,23 +557,40 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
                   
                   // Filtering logic
                   const categoryToFilter = cat.toLowerCase();
-                  const menuGrid = document.querySelector('#menu [class*="grid"]'); // Find the main container
-                  const cards = Array.from(document.querySelectorAll('#menu [class*="card"], #menu [class*="item"]'))
-                     .filter(c => c.children.length > 1); // Basic heuristic to find cards
+                  const menuData = window.PAPWENS_MENU_DATA || [];
+                  
+                  // Selected all cards (including hidden ones)
+                  const cards = Array.from(document.querySelectorAll('#menu .group, #menu [class*="card"], [id*="menu"] .group, .menu-item'));
                   
                   cards.forEach(card => {
                      if (categoryToFilter === 'all') {
                         card.style.display = '';
                      } else {
-                        // Compare card content with our config data categories
                         const cardText = card.innerText.toLowerCase();
-                        const matchingItem = config.menu.find(m => cardText.includes(m.name.toLowerCase()));
-                        const itemCategory = (matchingItem ? matchingItem.category : '').toLowerCase();
+                        // Heuristic: try to find matching item by name
+                        const matchingItem = menuData.find(m => cardText.includes(m.name.toLowerCase()) || m.name.toLowerCase().includes(cardText));
                         
-                        if (itemCategory.includes(categoryToFilter) || (categoryToFilter === 'bakery' && itemCategory === 'sourdough')) {
-                           card.style.display = '';
+                        if (matchingItem) {
+                           const itemCategory = (matchingItem.category || "").toLowerCase();
+                           const itemName = (matchingItem.name || "").toLowerCase();
+                           
+                           // Logic: Match category, or name, or specific mappings
+                           const isBakeryMatch = categoryToFilter === 'bakery' && (itemCategory === 'sourdough' || itemCategory === 'pastry');
+                           const isCateMatch = itemCategory.includes(categoryToFilter);
+                           const isNameMatch = itemName.includes(categoryToFilter);
+                           
+                           if (isCateMatch || isBakeryMatch || isNameMatch) {
+                              card.style.display = '';
+                           } else {
+                              card.style.display = 'none';
+                           }
                         } else {
-                           card.style.display = 'none';
+                           // Fallback for items not found in DB data
+                           if (cardText.includes(categoryToFilter)) {
+                              card.style.display = '';
+                           } else {
+                              card.style.display = 'none';
+                           }
                         }
                      }
                   });
@@ -581,6 +598,25 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
                container.appendChild(btn);
             });
             menuTitle.after(container);
+         }
+
+         // 14. Operating Hours Patch
+         const hoursHeading = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, p, span'))
+            .find(el => el.textContent.trim() === 'Operating Hours');
+         if (hoursHeading) {
+            const container = hoursHeading.parentElement;
+            if (container && !container.dataset.hoursHydrated) {
+               const originalHTML = container.innerHTML;
+               // Patching Senin-Jumat and Sabtu-Minggu hours
+               const updatedHTML = originalHTML
+                  .replace(/08\.00\s*[–-]\s*21\.00/g, '07.00 – 21.00')
+                  .replace(/07\.00\s*[–-]\s*22\.00/g, '07.00 – 21.00');
+               
+               if (originalHTML !== updatedHTML) {
+                  container.innerHTML = updatedHTML;
+                  container.dataset.hoursHydrated = "true";
+               }
+            }
          }
          
          // Cleanup OLD pills from any section (Menu/Gallery) if they reappear from React
