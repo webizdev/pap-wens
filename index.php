@@ -383,7 +383,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
 
         // 3. Navigation & Title Highlights
         if (config.siteName) {
-           document.querySelectorAll('.site-name, .brand-name').forEach(el => {
+           document.querySelectorAll('.site-name, .brand-name, a[href='#home'].font-heading').forEach(el => {
              if (el.textContent !== config.siteName) el.textContent = config.siteName;
            });
         }
