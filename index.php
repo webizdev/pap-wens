@@ -265,12 +265,12 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
       window.PAPWENS_GALLERY_DATA = window.PAPWENS_DB_CACHE["/api/gallery"];
 
       // 14. Sync Logic for Categories (Menu & Gallery)
-      function syncALLCategories() {
+      function syncAllCategories() {
          const isHome = window.location.pathname === '/' || window.location.pathname === '' || window.location.pathname.includes('index.php');
          if (!isHome) return;
 
          // Sync Gallery Items (Images)
-         document.querySelectorALL('img[alt], div[style*="background-image"]').forEach(el => {
+         document.querySelectorAll('img[alt], div[style*="background-image"]').forEach(el => {
             if (el.dataset.categorySynced) return;
             
             // For Gallery, items usually have a title or alt text
@@ -297,7 +297,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
         // 13. Gallery Page Category Pill Injection ("BAKERY")
         const isGalleryHome = window.location.pathname === '/' || window.location.pathname === '' || window.location.pathname.includes('index.php');
         if (isGalleryHome) {
-           const potentialAmbiance = Array.from(document.querySelectorALL('button, div, span')).find(el => {
+           const potentialAmbiance = Array.from(document.querySelectorAll('button, div, span')).find(el => {
               return el.children.length === 0 && el.innerText.trim() === 'Ambiance';
            });
 
@@ -318,7 +318,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
                     allPill.click();
                     
                     const applyFilter = () => {
-                        document.querySelectorALL('[data-gallery-tag]').forEach(item => {
+                        document.querySelectorAll('[data-gallery-tag]').forEach(item => {
                            const cat = (item.dataset.category || '').toLowerCase();
                            if (cat === 'bakery') {
                               item.style.display = 'block';
@@ -345,7 +345,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
                     if (p !== bakeryPill) {
                        p.addEventListener('click', () => {
                           bakeryPill.classList.remove('bg-espresso', 'text-white', 'active');
-                          document.querySelectorALL('[data-gallery-tag]').forEach(item => {
+                          document.querySelectorAll('[data-gallery-tag]').forEach(item => {
                              item.style.display = '';
                              item.style.opacity = '';
                           });
@@ -362,14 +362,14 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
         const toWebp = (url) => url ? url.replace(/\.(png|jpg|jpeg)$/i, '.webp') : '';
 
         // 0. Global Perf: Lazy Load Images (except Hero)
-        document.querySelectorALL('img:not([loading])').forEach(img => {
+        document.querySelectorAll('img:not([loading])').forEach(img => {
            if (!img.src.includes('hero') && !img.className.includes('logo')) {
               img.setAttribute('loading', 'lazy');
            }
         });
 
         // 1. WhatsApp Links
-        document.querySelectorALL('a[href*="wa.me"], a[href*="whatsapp.com"]').forEach(a => {
+        document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp.com"]').forEach(a => {
            if (config.whatsapp && !a.dataset.hydrated) {
               const cleanWa = config.whatsapp.replace(/[^0-9]/g, '');
               a.href = "https://wa.me/" + cleanWa;
@@ -380,7 +380,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
         // 2. Logo Replacement (Site-wide)
         if (config.logo) {
           const optLogo = toWebp(config.logo);
-          document.querySelectorALL('nav img, footer img, .logo img, [class*="footer"] img, img[alt*="logo"], img[alt*="Papwens"]').forEach(img => {
+          document.querySelectorAll('nav img, footer img, .logo img, [class*="footer"] img, img[alt*="logo"], img[alt*="Papwens"]').forEach(img => {
              if (!img.dataset.hydrated) {
                 img.src = optLogo;
                 img.dataset.hydrated = "true";
@@ -390,14 +390,14 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
 
         // 3. Navigation & Title Highlights
         if (config.siteName) {
-           document.querySelectorALL('.site-name, .brand-name').forEach(el => {
+           document.querySelectorAll('.site-name, .brand-name').forEach(el => {
              if (el.textContent !== config.siteName) el.textContent = config.siteName;
            });
         }
 
         // 4. Hero Section Sync
         if (settings.heroTitleMain) {
-           document.querySelectorALL('h1').forEach(h1 => {
+           document.querySelectorAll('h1').forEach(h1 => {
               if (h1.id === 'hero-title' || (h1.textContent.includes('BAKERY') && !h1.dataset.hydrated)) {
                  h1.textContent = settings.heroTitleMain;
                  h1.dataset.hydrated = "true";
@@ -410,7 +410,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
            try {
               const social = JSON.parse(contact.social_media);
               social.forEach(item => {
-                 document.querySelectorALL(`a[href*="${item.platform.toLowerCase()}"]`).forEach(a => {
+                 document.querySelectorAll(`a[href*="${item.platform.toLowerCase()}"]`).forEach(a => {
                     if (a.href !== item.url) a.href = item.url;
                  });
               });
@@ -420,7 +420,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
         // 7. Dynamic Images (Hero, About, etc)
         if (settings.heroImage) {
            const optHero = toWebp(settings.heroImage);
-           document.querySelectorALL('.hero-bg, .hero-image, #hero-skeleton').forEach(el => {
+           document.querySelectorAll('.hero-bg, .hero-image, #hero-skeleton').forEach(el => {
               if (el.dataset.hydrated_img) return;
               if (el.tagName === 'IMG') el.src = optHero;
               else el.style.backgroundImage = `url("${optHero}")`;
@@ -429,7 +429,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
         }
         if (settings.aboutImage) {
            const optAbout = toWebp(settings.aboutImage);
-           document.querySelectorALL('.about-image, img[alt*="About"]').forEach(img => {
+           document.querySelectorAll('.about-image, img[alt*="About"]').forEach(img => {
               if (!img.dataset.hydrated_img) {
                 img.src = optAbout;
                 img.dataset.hydrated_img = "true";
@@ -438,7 +438,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
         }
 
         // 8. Map Sanitizer & Badge Shield (Preventing Mobile Gap)
-        document.querySelectorALL('iframe[src*="google.com/maps"]').forEach(iframe => {
+        document.querySelectorAll('iframe[src*="google.com/maps"]').forEach(iframe => {
            if (!iframe.dataset.sanitized) {
               iframe.style.width = '100%';
               iframe.style.maxWidth = '100vw';
@@ -448,7 +448,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
         });
 
         // Badge Shield: Ensure rotating elements don't overflow
-        document.querySelectorALL('[class*="natural"], [class*="badge"], [class*="animate"]').forEach(el => {
+        document.querySelectorAll('[class*="natural"], [class*="badge"], [class*="animate"]').forEach(el => {
            if (el.offsetWidth > window.innerWidth) {
               el.style.maxWidth = '100vw';
               el.style.overflow = 'hidden';
@@ -459,7 +459,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
         if (window.location.pathname.includes('/admin')) {
           const webSettingsForm = document.querySelector('form') || document.querySelector('#root');
           if (webSettingsForm && (document.body.innerText.includes('Web Settings') || document.body.innerText.includes('Identitas'))) {
-             const logoSection = Array.from(document.querySelectorALL('label')).find(l => l.innerText.includes('Logo'));
+             const logoSection = Array.from(document.querySelectorAll('label')).find(l => l.innerText.includes('Logo'));
              if (logoSection && !document.getElementById('papwens-del-logo-btn')) {
                 const btn = document.createElement('button');
                 btn.id = 'papwens-del-logo-btn';
@@ -490,7 +490,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
         const footer = document.querySelector('footer') || document.querySelector('[class*="footer"]');
         if (footer) {
           const siteNameDisplay = config.siteName || 'PAPWENS';
-          const brandArea = Array.from(footer.querySelectorALL('h1, h2, h3, h4, h5, div, span, a, p'))
+          const brandArea = Array.from(footer.querySelectorAll('h1, h2, h3, h4, h5, div, span, a, p'))
              .find(el => {
                 const txt = el.textContent.trim().toLowerCase();
                 const siteName = (config.siteName || '').toLowerCase();
@@ -518,7 +518,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
         }
 
         // 10. Image SEO (ALT tags)
-        document.querySelectorALL('img').forEach(img => {
+        document.querySelectorAll('img').forEach(img => {
            const src = img.src.toLowerCase();
            if (!img.alt || img.alt === '' || img.alt.includes('dummy') || img.alt.includes('Placeholder')) {
               if (src.includes('logo')) img.alt = config.siteName + ' Logo';
@@ -544,7 +544,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
 
         // 12. Dynamic Admin Categories Sync (MySQL Source)
         if (window.location.pathname.includes('/admin')) {
-           const catSelect = Array.from(document.querySelectorALL('select')).find(el => {
+           const catSelect = Array.from(document.querySelectorAll('select')).find(el => {
               const label = el.closest('div')?.querySelector('label');
               return label && label.innerText.toLowerCase().includes('kategori');
            });
@@ -580,7 +580,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
         if (hydrationTimeout) clearTimeout(hydrationTimeout);
         hydrationTimeout = setTimeout(() => {
            hydrateDynamicData();
-           syncALLCategories();
+           syncAllCategories();
         }, 100);
       });
 
@@ -591,7 +591,7 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
         const cat = btn.getAttribute('data-cat');
         
         // Sync Visual State
-        document.querySelectorALL('[data-cat]').forEach(b => {
+        document.querySelectorAll('[data-cat]').forEach(b => {
           if (b.getAttribute('data-cat') === cat) {
             b.classList.add('custom-p-active', 'bg-espresso', 'text-white', 'shadow-custom-md');
             b.classList.remove('custom-p-inactive', 'text-text-secondary');
@@ -606,12 +606,12 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
         categorySections.forEach(sid => {
            const section = document.getElementById(sid);
            if (section) {
-              const originalContainer = Array.from(section.querySelectorALL('div')).find(div => 
-                Array.from(div.querySelectorALL('button')).some(b => b.textContent.trim().toLowerCase() === 'all' && !b.hasAttribute('data-cat'))
+              const originalContainer = Array.from(section.querySelectorAll('div')).find(div => 
+                Array.from(div.querySelectorAll('button')).some(b => b.textContent.trim().toLowerCase() === 'all' && !b.hasAttribute('data-cat'))
               );
               if (originalContainer) {
                  originalContainer.style.display = 'none';
-                 const origMatch = Array.from(originalContainer.querySelectorALL('button')).find(ob => ob.textContent.trim().toLowerCase() === cat.toLowerCase());
+                 const origMatch = Array.from(originalContainer.querySelectorAll('button')).find(ob => ob.textContent.trim().toLowerCase() === cat.toLowerCase());
                  if (origMatch) origMatch.click();
               }
            }
@@ -624,8 +624,8 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan BAKERY & 
       });
     </script>
 
-    <script type="module" crossorigin src="/assets/index-DU-yLjgB.js?v=BUILD_2026_04_18_V17" defer></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-fjww86zz.css?v=BUILD_2026_04_18_V17">
+    <script type="module" crossorigin src="/assets/index-DU-yLjgB.js?v=BUILD_2026_04_18_V18" defer></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-fjww86zz.css?v=BUILD_2026_04_18_V18">
     <style>
       #hero-skeleton { aspect-ratio: 16/9; }
       @media (max-width: 768px) { #hero-skeleton { aspect-ratio: 9/16; } }
