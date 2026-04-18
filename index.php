@@ -97,7 +97,6 @@ $theme = !empty($webData['theme']) ? $webData['theme'] : 'yellow-black';
 
 // Helper for SEO Title
 $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & Specialty Coffee');
-$buildVer = "BUILD_2026_04_18_V12";
 ?>
 <!doctype html>
 <html lang="en">
@@ -498,7 +497,7 @@ $buildVer = "BUILD_2026_04_18_V12";
                    const img = document.createElement('img');
                    img.src = config.logo;
                    img.alt = siteNameDisplay;
-                   img.className = 'hydrated-logo';
+                   img.style = 'height: 48px; width: auto; margin-bottom: 20px; display: block; object-fit: contain;';
                    brandArea.innerHTML = ''; 
                    brandArea.appendChild(img);
                 }
@@ -567,55 +566,6 @@ $buildVer = "BUILD_2026_04_18_V12";
 
       }
 
-      
-         // --- CUSTOM PILL SYNC LOGIC ---
-         const CUSTOM_CATEGORIES = ['All', 'Bakery', 'Coffee', 'Non-Coffee', 'Pastry', 'Sourdough'];
-         
-         function injectCustomPills(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (!section || section.querySelector('.custom-pill-container')) return;
-
-            const originalContainer = Array.from(section.querySelectorAll('div')).find(div => 
-               Array.from(div.querySelectorAll('button')).some(btn => btn.textContent.trim().toLowerCase() === 'all')
-            );
-            if (!originalContainer) return;
-
-            const container = document.createElement('div');
-            container.className = 'custom-pill-container -webkit-scrollbar scrollbar-hide flex space-x-2 p-1 bg-warm-white rounded-full snap-x snap-mandatory mb-8 mx-auto w-max max-w-full overflow-x-auto';
-            
-            CUSTOM_CATEGORIES.forEach(cat => {
-               const btn = document.createElement('button');
-               btn.textContent = cat;
-               btn.className = 'px-6 py-2 md:px-8 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 snap-center ' + (cat === 'All' ? 'custom-pill-active' : 'custom-pill-inactive');
-               
-               btn.onclick = () => {
-                  section.querySelectorAll('.custom-pill-container button').forEach(b => {
-                     b.classList.remove('custom-pill-active');
-                     b.classList.add('custom-pill-inactive');
-                  });
-                  btn.classList.add('custom-pill-active');
-                  btn.classList.remove('custom-pill-inactive');
-
-                  const targetCat = cat.toLowerCase();
-                  const originalBtns = Array.from(originalContainer.querySelectorAll('button'));
-                  const originalMatch = originalBtns.find(ob => ob.textContent.trim().toLowerCase() === targetCat) || (cat === 'All' ? originalBtns.find(ob => ob.textContent.trim().toLowerCase() === 'all') : null);
-                  
-                  if (originalMatch) {
-                     originalMatch.click();
-                  }
-               };
-               container.appendChild(btn);
-            });
-
-             originalContainer.style.display = 'none';
-             originalContainer.parentNode.insertBefore(container, originalContainer);
-         }
-
-         function syncAllCategories() {
-            injectCustomPills('menu');
-            injectCustomPills('gallery');
-         }
-
       // HIGH PERFORMANCE DEBOUNCED OBSERVER
       // Instead of running every mutation, we wait 100ms for React to settle
       let hydrationTimeout = null;
@@ -633,22 +583,12 @@ $buildVer = "BUILD_2026_04_18_V12";
       });
     </script>
 
+    <script type="module" crossorigin src="/assets/index-DU-yLjgB.js?v=BUILD_2026_04_18_V15" defer></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-fjww86zz.css?v=BUILD_2026_04_18_V15">
     <style>
-      .hydrated-logo { height: 48px; width: auto; margin-bottom: 20px; display: block; object-fit: contain; }
-      /* Hide original react filter bars */
-      #menu [class*="scrollbar-hide"][class*="snap-x"], 
-      #gallery [class*="scrollbar-hide"][class*="snap-x"] { display: none !important; }
-      /* Custom Pill Active State */
-      .custom-pill-active { background-color: #3d2b1f !important; color: white !important; box-shadow: 0 4px 12px rgba(61, 43, 31, 0.3); }
-      .custom-pill-inactive { color: #6b7280 !important; }
-      .custom-pill-inactive:hover { color: #3d2b1f !important; }
-      #root, main, section, footer, .app-container { }
       #hero-skeleton { aspect-ratio: 16/9; }
       @media (max-width: 768px) { #hero-skeleton { aspect-ratio: 9/16; } }
     </style>
-    <link rel="stylesheet" href="/assets/index-DU-yLjgB.css?v=<?php echo $buildVer; ?>">
-    <script type="module" crossorigin src="/assets/index-DU-yLjgB.js?v=<?php echo $buildVer; ?>"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-fjww86zz.css?v=BUILD_2026_04_18_V12">
   </head>
   <body>
     <!-- Pre-rendered Content for SEO and LCP Performance (Optimized for Mobile) -->
