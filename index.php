@@ -434,6 +434,9 @@ $seoTitle = $siteName . " - " . ($webData['heroTitleMain'] ?? 'Artisan Bakery & 
     }
     </script>
 
+    <!-- Global UI & Interaction Patch -->
+    <script src="assets/admin-mobile-patch.js?v=<?php echo time(); ?>"></script>
+
    <script>
       /**
        * ZERO-DELAY HYDRATION ENGINE
