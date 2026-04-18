@@ -3,18 +3,21 @@
  * PAPWENS Compatibility Bridge (PHP 7.4 to 8.0)
  */
 if (!function_exists('str_contains')) {
-    function str_contains($haystack, $needle) {
+    function str_contains($haystack, $needle)
+    {
         return $needle !== '' && mb_strpos($haystack, $needle) !== false;
     }
 }
 if (!function_exists('str_starts_with')) {
-    function str_starts_with($haystack, $needle) {
-        return (string)$needle !== '' && mb_strpos($haystack, $needle) === 0;
+    function str_starts_with($haystack, $needle)
+    {
+        return (string) $needle !== '' && mb_strpos($haystack, $needle) === 0;
     }
 }
 if (!function_exists('str_ends_with')) {
-    function str_ends_with($haystack, $needle) {
-        return $needle !== '' && mb_substr($haystack, -mb_strlen($needle)) === (string)$needle;
+    function str_ends_with($haystack, $needle)
+    {
+        return $needle !== '' && mb_substr($haystack, -mb_strlen($needle)) === (string) $needle;
     }
 }
 // =============================================
@@ -35,11 +38,12 @@ define('ADMIN_PASSWORD', 'Papwens!!31@@');       // Ganti dengan password admin 
 // =============================================
 // Koneksi Database
 // =============================================
-function getDB(): mysqli {
+function getDB(): mysqli
+{
     // Suppress warnings for a cleaner JSON response on failure
     mysqli_report(MYSQLI_REPORT_OFF);
     $conn = @new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-    
+
     if ($conn->connect_error) {
         header('Content-Type: application/json; charset=utf-8');
         http_response_code(500);
@@ -58,7 +62,8 @@ function getDB(): mysqli {
 // =============================================
 // Helper: Send JSON Response
 // =============================================
-function sendJSON($data, int $code = 200): void {
+function sendJSON($data, int $code = 200): void
+{
     http_response_code($code);
     header('Content-Type: application/json; charset=utf-8');
     header('Access-Control-Allow-Origin: *');
@@ -76,12 +81,13 @@ function sendJSON($data, int $code = 200): void {
  * Helper: Clear settings cache and purge server cache
  * =============================================
  */
-function clearCache(): void {
+function clearCache(): void
+{
     $cacheFile = __DIR__ . '/../uploads/settings_cache.json';
     if (file_exists($cacheFile)) {
         @unlink($cacheFile);
     }
-    
+
     // Purge signals for common shared hosting cache layers (LiteSpeed, Nginx, etc)
     header('X-LiteSpeed-Purge: *');
     header('X-Accel-Expires: 0');
@@ -91,7 +97,8 @@ function clearCache(): void {
 // =============================================
 // Helper: Get Request Body as Array
 // =============================================
-function getBody(): array {
+function getBody(): array
+{
     $raw = file_get_contents('php://input');
     return json_decode($raw, true) ?? [];
 }
