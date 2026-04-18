@@ -607,7 +607,8 @@ $buildVer = "BUILD_2026_04_18_V12";
                container.appendChild(btn);
             });
 
-            originalContainer.parentNode.insertBefore(container, originalContainer);
+             originalContainer.style.display = 'none';
+             originalContainer.parentNode.insertBefore(container, originalContainer);
          }
 
          function syncAllCategories() {
